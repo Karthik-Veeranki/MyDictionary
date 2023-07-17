@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body
+{
+    background: #e4dddd;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.search 
+{
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.searchTerm 
+{
+    width: 100%;
+    border: 3px solid black;    
+    padding: 5px;
+    height: 30px;
+    border-radius: 5px 5px 5px 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus
+{
+    color: black;
+}
+
+.searchButton 
+{
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap
+{
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+</style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <img src="https://news.wayne.edu/storage/files/word-warriors-2020-1200x960-no-gradientjpg-copy-5dfbd2a47cc99.jpg" style="width:100px;" class="rounded-pill">
+            <p class="alert alert-success">MyDictionary</p>
+        </div>
+    </nav>
+
+  <div class="wrap">
+      <div class="search">
+          <form action="word">
+              <input type="text" name="search" class="searchTerm" placeholder="Enter your word">
+
+              <div class="container mt-3">
+              
+                  <button type="submit" class="searchButton" data-bs-toggle="tooltip" title="Search!">
+                      <i class="fa fa-search"></i>
+                  </button>
+              </div>
+              <script>
+                  // Initialize tooltips
+                  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                  })
+                </script>
+          </form>
+      </div>
+
+      <br>
+      <h2>Your word : {{entered_word}}</h2>
+      <div class = "row">
+        <div class="alert alert-success">
+          <p class = "h3">Meaning: {{meaning}}</p>
+        </div>
+
+
+
+        <div id="accordion">
+            <div class="alert alert-info alert-dismissible fade show card-header">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                    Synonyms : <i>(Expand to view)</i>
+                </a>
+
+                <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
+                    <div class="card-body">
+                        <h3>{% for synonym in synonyms %}
+                          {{synonym}},
+                          {% endfor %}</h3>
+                    </div>
+                </div>
+
+            </div>
+
+              <div id="accordion">
+                  <div class="alert alert-secondary alert-dismissible fade show">
+                      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                      <a class="btn" data-bs-toggle="collapse" href="#collapseTwo">
+                          Antonyms : <i>(Expand to view)</i>
+                      </a>
+                  
+                      <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                          <div class="card-body">
+                              <h3>{% for antonym in antonyms %}
+                                {{antonym}},
+                                {% endfor %}</h3>
+                          </div>
+                        </div>
+
+    
+    
+                    </div>
+
+    
+                </div>
+          </div>
+        </div>
+
+  </div>
+        
+
+</body>
+</html>
