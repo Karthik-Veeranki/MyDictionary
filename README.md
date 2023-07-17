@@ -10,6 +10,7 @@ Designed the frontend using **HTML**, **CSS**, **BootStrap5** and hosted the app
 
 Changes commited to the default framework are as follows:
 In the dictionary folder,
+
 --- To the default framework, added the urlpatterns in urls.py,
 --- Created the views for searching the meaning, synonyms, antonyms in views.py,
 In the englishdictionary folder,
